@@ -18,14 +18,19 @@
     {% if project_list %}
     <div class="list-group">
         {% for project in project_list %}
-        <a href="#" class="list-group-item list-group-item-action"> {{ project.name }}</a>
+        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start ">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ project.name }}</h5>
+                <small>3 days ago</small>
+            </div>
+        </a>
         {% endfor %}
     </ul>
     {% else %}
     <p>No polls are available.</p>
     {% endif %}
     <!-- jquery JavaScript -->
-    <script src="/static/js/jquery-3.2.1.min.js"></script>
+    <!-- <script src="/static/js/jquery-3.2.1.min.js"></script> -->
     <!-- Bootstrap core JavaScript -->
     <script src="/static/js/bootstrap.min.js"></script>
 </body></html>
