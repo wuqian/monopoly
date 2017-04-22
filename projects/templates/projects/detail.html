@@ -31,46 +31,50 @@
 <body>
     <div class="bd-pageheader">
         <div class="container">
-            <h1>PROJECT OVERVIEW</h1>
+            <h1>{{ project.name }}</h1>
         </div>
     </div>
-<!--
     <div class="container">
-        {% if project_list %}
-        <div class="list-group">
-            {% for project in project_list %}
-            <a href="/projects/{{ project.id }}/" class="list-group-item list-group-item-action flex-column align-items-start ">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">{{ project.name }}</h5>
-                    <small>{{ project.progress }}%</small>
-                </div>
-            </a>
-            {% endfor %}
-        </ul>
-        {% else %}
-        <p>No polls are available.</p>
-        {% endif %}
+<div class="row">
+  <div class="col-sm-4">
+    <div class="card card-block" >
+      <p class="card-title">Project manager</p>
+      <h1 class="card-title">{{ project.owner }}</h1>
     </div>
--->
-    <div class="container">
+  </div>
+  <div class="col-sm-4">
+    <div class="card card-block">
+      <p class="card-title">Contrac price</p>
+      <h1 class="card-title">{{ project.contract_price}}</h1>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card card-block">
+      <p class="card-title">Progress</p>
+      <h1 class="card-title">{{ project.progress }}%</h1>
+    </div>
+  </div>
+</div>
+<p>
+<div >
+    <h4 class="card-title">Stub set list</h4>
+</div>
         <table class="table table-hover">
           <thead>
             <tr>
-              <th>#</th>
-              <th>Project name</th>
-              <th>Project manager</th>
-              <th>Contract price</th>
-              <th>Progress</th>
+              <th>label</th>
+              <th>type</th>
+              <th>finished</th>
+              <th>total</th>
             </tr>
           </thead>
           <tbody>
-            {% for p in project_list %}
+            {% for stub_set in stub_set_list %}
             <tr>
-              <th scope="row">{{ p.id }}</th>
-              <td><a href="/projects/{{ p.id }}/">{{ p.name }}</a></td>
-              <td>{{ p.owner}}</td>
-              <td>{{ p.contract_price }}</td>
-              <td>{{ p.progress }}%</td>
+              <td>{{ stub_set.name}}</td>
+              <td>{{ stub_set.stub_type}}</td>
+              <td>{{ stub_set.finished_number}}</td>
+              <td>{{ stub_set.count }}</td>
             </tr>
             {% endfor %}
           </tbody>
