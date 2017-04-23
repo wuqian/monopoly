@@ -23,7 +23,7 @@
     color: #ffffff;
     margin-bottom: 1.5rem;
     padding: 2rem 0.9375rem;
-    text-align: center;
+    text-align: left;
 }
     </style>
 </head>
@@ -31,41 +31,47 @@
 <body>
     <div class="bd-pageheader">
         <div class="container">
-            <h1>{{ project.name }}</h1>
+            <h1>XYZ 项目管理工具</h1>
         </div>
     </div>
     <div class="container">
-<div class="row">
-  <div class="col-sm-4">
-    <div class="card card-block" >
-      <p class="card-title">Project manager</p>
-      <h1 class="card-title">{{ project.owner }}</h1>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="card card-block">
-      <p class="card-title">Contrac price</p>
-      <h1 class="card-title">{{ project.contract_price}}</h1>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="card card-block">
-      <p class="card-title">Progress</p>
-      <h1 class="card-title">{{ project.progress }}%</h1>
-    </div>
-  </div>
-</div>
-<p>
-<div >
-    <h4 class="card-title">Stub set list</h4>
-</div>
+      <div >
+          <h1>{{ project.name }}</h1>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="card card-block" >
+            <p class="card-title">项目经理</p>
+          <h1 class="card-title">{{ project.owner }}</h1>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card card-block">
+            <p class="card-title">合同总额</p>
+            <h1 class="card-title">{{ project.contract_price}}</h1>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card card-block">
+            <p class="card-title">当前进度</p>
+            <h1 class="card-title">??{{ project.progress }}%??</h1>
+          </div>
+        </div>
+      </div>
+      <p>
+      <div >
+          <h4 class="card-title">项目详情</h4>
+      </div>
         <table class="table table-hover">
           <thead>
             <tr>
-              <th>label</th>
-              <th>type</th>
-              <th>finished</th>
-              <th>total</th>
+              <th>描述</th>
+              <th>桩类型</th>
+              <th>桩长</th>
+              <th>桩径(??直径??)</th>
+              <th>已完成</th>
+              <th>总量</th>
+              <th>进度</th>
             </tr>
           </thead>
           <tbody>
@@ -73,8 +79,11 @@
             <tr>
               <td>{{ stub_set.name}}</td>
               <td>{{ stub_set.stub_type}}</td>
+              <td>{{ stub_set.length_from}} - {{ stub_set.length_to}}</td>
+              <td>{{ stub_set.diameter}}</td>
               <td>{{ stub_set.finished_number}}</td>
               <td>{{ stub_set.count }}</td>
+              <td>{{ stub_set.progress }}%</td>
             </tr>
             {% endfor %}
           </tbody>

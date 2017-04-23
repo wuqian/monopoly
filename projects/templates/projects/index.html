@@ -12,68 +12,61 @@
     <!-- Bootstrap core CSS -->
     <link href="/static/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
-.bd-pageheader {
-    margin-bottom: 3rem;
-    padding-bottom: 4rem;
-    padding-top: 4rem;
-    text-align: left;
-}
-.bd-pageheader {
-    background-color: #003D79;
-    color: #ffffff;
-    margin-bottom: 1.5rem;
-    padding: 2rem 0.9375rem;
-    text-align: center;
-}
+     .bd-pageheader {
+         margin-bottom: 3rem;
+         padding-bottom: 4rem;
+         padding-top: 4rem;
+         text-align: left;
+     }
+     .bd-pageheader {
+         background-color: #003D79;
+         color: #ffffff;
+         margin-bottom: 1.5rem;
+         padding: 2rem 0.9375rem;
+         text-align: left;
+     }
     </style>
 </head>
 
 <body>
     <div class="bd-pageheader">
         <div class="container">
-            <h1>PROJECT OVERVIEW</h1>
+            <h1>XYZ 项目管理工具</h1>
         </div>
     </div>
-<!--
     <div class="container">
-        {% if project_list %}
-        <div class="list-group">
-            {% for project in project_list %}
-            <a href="/projects/{{ project.id }}/" class="list-group-item list-group-item-action flex-column align-items-start ">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">{{ project.name }}</h5>
-                    <small>{{ project.progress }}%</small>
-                </div>
-            </a>
-            {% endfor %}
-        </ul>
-        {% else %}
-        <p>No polls are available.</p>
-        {% endif %}
-    </div>
--->
-    <div class="container">
+        <div>
+            <h2>项目概况</h2>
+        </div>
         <table class="table table-hover">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Project name</th>
-              <th>Project manager</th>
-              <th>Contract price</th>
-              <th>Progress</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for p in project_list %}
-            <tr>
-              <th scope="row">{{ p.id }}</th>
-              <td><a href="/projects/{{ p.id }}/">{{ p.name }}</a></td>
-              <td>{{ p.owner}}</td>
-              <td>{{ p.contract_price }}</td>
-              <td>{{ p.progress }}%</td>
-            </tr>
-            {% endfor %}
-          </tbody>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>项目名称</th>
+                    <th>项目经理</th>
+                    <th>合同总额</th>
+                    <th>甲方应付</th>
+                    <th>甲方已付</th>
+                    <th>项目支出</th>
+                    <th>项目应付</th>
+                    <th>当前进度</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in project_list %}
+                <tr>
+                    <th scope="row">{{ p.id }}</th>
+                    <td><a href="/projects/{{ p.id }}/">{{ p.name }}</a></td>
+                    <td>{{ p.owner}}</td>
+                    <td>{{ p.contract_price }}</td>
+                    <td>{{ p.receivable }}</td>
+                    <td>{{ p.income }}</td>
+                    <td>{{ p.expense }}</td>
+                    <td>????</td>
+                    <td>????{{ p.progress }}%</td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
     </div>
     <!-- jquery JavaScript -->
