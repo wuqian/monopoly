@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)http://getbootstrap.com/examples/starter-template/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+    <title>Starter Template for Bootstrap</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+     .bd-pageheader {
+         margin-bottom: 3rem;
+         padding-bottom: 4rem;
+         padding-top: 4rem;
+         text-align: left;
+     }
+     .bd-pageheader {
+         background-color: #003D79;
+         color: #ffffff;
+         margin-bottom: 1.5rem;
+         padding: 2rem 0.9375rem;
+         text-align: left;
+     }
+    </style>
+</head>
+
+<body>
+    <div class="bd-pageheader">
+        <div class="container">
+            <h1>XYZ 项目管理工具</h1>
+        </div>
+    </div>
+    <div class="container">
+        <div>
+            <h2>Operator list</h2>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Operator</th>
+                    <th>Stat</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for op in operator_list %}
+                <tr>
+                    <th scope="row">{{ op.id }}</th>
+                    <td><a href="#">{{ op.name }}</a></td>
+                    <td>{{ op.stat.desc }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div>
+            <h2>Mechine list</h2>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Mechine</th>
+                    <th>Stat</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for m in mechine_list %}
+                <tr>
+                    <th scope="row">{{ m.id }}</th>
+                    <td><a href="#">{{ m.info }}</a></td>
+                    <td>{{ m.stat.desc }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- jquery JavaScript -->
+    <!-- <script src="/static/js/jquery-3.2.1.min.js"></script> -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="/static/js/bootstrap.min.js"></script>
+</body></html>

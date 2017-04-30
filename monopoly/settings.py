@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ["192.168.7.199","127.0.0.1","localhost","wuqian.online"]
 # Application definition
 
 INSTALLED_APPS = [
+    'operations.apps.OperationsConfig',
     'projects.apps.ProjectsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
