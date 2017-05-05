@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from projects.models import *
 
 class OperatorStat(models.Model):
     desc = models.CharField(max_length=200)
@@ -28,7 +29,17 @@ class Mechine(models.Model):
 class MechineUsageRecord(models.Model):
     mechine = models.ForeignKey(Mechine)
     op = models.ForeignKey(Operator)
-    from_stat = models.IntegerField()
-    to_stat = models.IntegerField()
+    from_stat = models.ForeignKey(MechineStat, related_name='from_stat')
+    to_stat = models.ForeignKey(MechineStat, related_name='to_stat')
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return self.op.name + ":" + self.mechine.info + ":"
+
+class TampingRecord(models.Model):
+    mechine_record = models.ForeignKey(MechineUsageRecord)
+    stub = models.ForeignKey(Stub)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
     def __unicode__(self):
         return self.op.name + ":" + self.mechine.info + ":"

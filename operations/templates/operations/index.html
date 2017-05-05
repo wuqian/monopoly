@@ -35,15 +35,19 @@
         </div>
     </div>
     <div class="container">
+        <button id="checkout" type="button" class="btn btn-primary">桩机借用</button>
+        <button type="button" class="btn btn-primary">桩机归还</button>
+        <button type="button" class="btn btn-primary">打桩</button>
+        <p>
         <div>
-            <h2>Operator list</h2>
+            <h2>操作员</h2>
         </div>
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Operator</th>
-                    <th>Stat</th>
+                    <th>姓名</th>
+                    <th>状态</th>
                 </tr>
             </thead>
             <tbody>
@@ -57,14 +61,14 @@
             </tbody>
         </table>
         <div>
-            <h2>Mechine list</h2>
+            <h2>桩机</h2>
         </div>
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Mechine</th>
-                    <th>Stat</th>
+                    <th>桩机</th>
+                    <th>状态</th>
                 </tr>
             </thead>
             <tbody>
@@ -77,9 +81,62 @@
                 {% endfor %}
             </tbody>
         </table>
+
+        <div>
+            <h2>桩机使用记录</h2>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>桩机</th>
+                    <th>操作员</th>
+                    <th>行为</th>
+                    <th>时间</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in usage_record_list %}
+                <tr>
+                    <th scope="row">{{ r.id }}</th>
+                    <td><a href="#">{{ r.mechine }}</a></td>
+                    <td>{{ r.op }}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
+
     <!-- jquery JavaScript -->
-    <!-- <script src="/static/js/jquery-3.2.1.min.js"></script> -->
+    <script src="/static/js/jquery-3.2.1.min.js"></script>
+
     <!-- Bootstrap core JavaScript -->
     <script src="/static/js/bootstrap.min.js"></script>
+
+    <script>
+    $(document).ready(function() {
+        $("#checkout").click(function () {
+          //send jason to server
+          obj = {
+            "key1" : 123,
+            "key2" : 456
+          }
+
+          $.ajax({
+            type: 'get',
+            url: 'a.php',
+            contentType: "application/json; charset=UTF-8",
+            data: obj,
+            success: function(data) {
+                alert(data);
+            },
+            error: function(e){
+                console.log(e.message);
+            }
+          });
+        });
+    });
+</script>
 </body></html>

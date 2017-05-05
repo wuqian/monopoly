@@ -48,3 +48,14 @@ class Record(models.Model):
                     decimal_places=2)
     def __unicode__(self):
         return self.project.name + ":" + str(self.value)
+
+class Stub(models.Model):
+    desc = models.CharField(max_length=200)
+    length = models.DecimalField(blank=True, null=True, max_digits=20,
+                    decimal_places=2)
+    diameter = models.DecimalField(blank=True, null=True, max_digits=20,
+                    decimal_places=2)
+    stubset = models.ForeignKey(StubSet)
+
+    def __unicode__(self):
+        return self.name
