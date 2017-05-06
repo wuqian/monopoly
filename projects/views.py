@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.db.models import F, FloatField, Sum
 from .models import *
-
+from operations.models import *
 
 # Create your views here.
 def index(request):
@@ -36,3 +36,15 @@ def detail(request, project_id):
         raise Http404("Project does not exist")
 
     return render(request, "projects/detail.html", {'project' : p, "stub_set_list" : stub_set_list})
+
+def stub_detail(request, stub_id):
+
+    stub = Stub.objects.get(pk=stub_id)
+    tamping_record_list = TampingRecord.objects.filter(stub=stub)
+    context = {
+        "stub" : stub,
+        "stubset" : stub.stubset,
+        "project" : stub.stubset.project,
+        "tamping_record_list" : tamping_record_list
+    }
+    return render(request, "projects/stub_detail.html", context)

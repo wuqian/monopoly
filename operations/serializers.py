@@ -33,4 +33,10 @@ class MechineUsageRecordSerializer(serializers.Serializer):
 
         #TODO: update operator's status
 
+class TampingRecordSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
+    mechine_record_id = serializers.IntegerField()
+    stub_id = serializers.IntegerField()
 
+    def create(self, data):
+        return TampingRecord.objects.create(**data)

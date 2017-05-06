@@ -35,9 +35,10 @@
         </div>
     </div>
     <div class="container">
+        <h4>Testing buttons</h4>
         <button id="checkout" type="button" class="btn btn-primary">桩机#1借用</button>
         <button id="checkin" type="button" class="btn btn-primary">桩机#1归还</button>
-        <button type="button" class="btn btn-primary">打桩</button>
+        <button id="tamping" type="button" class="btn btn-primary">打桩</button>
         <p>
         <div>
             <h2>操作员</h2>
@@ -77,6 +78,33 @@
                     <th scope="row">{{ m.id }}</th>
                     <td><a href="#">{{ m.info }}</a></td>
                     <td>{{ m.stat.desc }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+         <div>
+            <h2>Stub list</h2>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>stub description</th>
+                    <th>stub lenght</th>
+                    <th>stub diameter</th>
+                    <th>stub set</th>
+                    <th>projects</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for stub in stub_list %}
+                <tr>
+                    <th scope="row">{{ stub.id }}</th>
+                    <th><a href="/projects/stubs/{{ stub.id }}">{{ stub.desc }}</a></th>
+                    <td>{{ stub.length }}</td>
+                    <td>{{ stub.diameter }}</td>
+                    <td>{{ stub.stubset.name }}</td>
+                    <td><a href="/projects/{{ stub.stubset.project.id }}/">{{ stub.stubset.project.name }}</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -125,7 +153,7 @@
                  'from_stat_id':1,
                  'to_stat_id':2
              };
-             $.post("usage_record/", JSON.stringify(obj))
+             $.post("usage_record/", JSON.stringify(obj));
          });
          $("#checkin").click(function () {
              obj = {
@@ -134,8 +162,17 @@
                  'from_stat_id':2,
                  'to_stat_id':1
              };
-             $.post("usage_record/", JSON.stringify(obj))
+             $.post("usage_record/", JSON.stringify(obj));
          });
+         $("#tamping").click(function () {
+             obj = {
+                 "mechine_record_id" : 17,
+                 "stub_id" : 1,
+             };
+             $.post("tamping_record/", JSON.stringify(obj));
+
+         });
+
     });
 </script>
 </body></html>
