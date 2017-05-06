@@ -12,7 +12,9 @@ class MechineUsageRecordSerializer(serializers.Serializer):
     to_stat_id = serializers.IntegerField()
 
     def create(self, data):
-        return MechineUsageRecord.objects.create(**data)
+        record = MechineUsageRecord.objects.create(**data)
+        self.update_mechine_stat(record)
+        return record
 
     def update(self, instance, data):
         instance.mechine = Mechine.objects.get(pk=data.mechine_id)
@@ -20,6 +22,15 @@ class MechineUsageRecordSerializer(serializers.Serializer):
         instance.from_stat = MechineStat.objects.get(pk=from_stat_id)
         instance.to_stat = MechineStat.objects.get(pk=to_stat_id)
         instance.save()
-
         return instance
+
+    def update_mechine_stat(self, record):
+        mechine = record.mechine
+        stat = record.to_stat
+
+        mechine.stat = stat
+        mechine.save()
+
+        #TODO: update operator's status
+
 

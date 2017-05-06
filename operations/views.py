@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 from rest_framework.renderers import *
 from rest_framework.parsers import *
@@ -25,9 +26,13 @@ def index(request):
 
     return render(request, 'operations/index.html', context)
 
+@csrf_exempt
 def create_usage_record(request):
+    print("hello")
     if request.method == 'POST':
+        print("before parse")
         data = JSONParser().parse(request)
+        print(data)
         serializer = MechineUsageRecordSerializer(data=data)
         if (serializer.is_valid()):
             serializer.save()
