@@ -91,7 +91,7 @@
                     <th>#</th>
                     <th>桩机</th>
                     <th>操作员</th>
-                    <th>行为</th>
+                    <th>stat change</th>
                     <th>时间</th>
                 </tr>
             </thead>
@@ -99,10 +99,10 @@
                 {% for r in usage_record_list %}
                 <tr>
                     <th scope="row">{{ r.id }}</th>
-                    <td><a href="#">{{ r.mechine }}</a></td>
-                    <td>{{ r.op }}</td>
-                    <td></td>
-                    <td></td>
+                    <td><a href="#">{{ r.mechine.info }}</a></td>
+                    <td>{{ r.op.name }}</td>
+                    <td>{{ r.from_stat.desc}} to {{ r.to_stat.desc }}</td>
+                    <td>{{ r.timestamp }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
