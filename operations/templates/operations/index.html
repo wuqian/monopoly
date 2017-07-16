@@ -36,9 +36,11 @@
     </div>
     <div class="container">
         <h4>Testing buttons</h4>
+<!--
         <button id="checkout" type="button" class="btn btn-primary">桩机#1借用</button>
         <button id="checkin" type="button" class="btn btn-primary">桩机#1归还</button>
-        <button id="tamping" type="button" class="btn btn-primary">打桩</button>
+-->
+        <button id="tamping" type="button" class="btn btn-primary">打桩测试</button>
         <p>
         <div>
             <h2>操作员</h2>
@@ -46,7 +48,7 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>id</th>
                     <th>姓名</th>
                     <th>状态</th>
                 </tr>
@@ -67,7 +69,7 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>#</th>
+                    <th>id</th>
                     <th>桩机</th>
                     <th>状态</th>
                 </tr>
@@ -83,17 +85,16 @@
             </tbody>
         </table>
          <div>
-            <h2>Stub list</h2>
+            <h2>桩列表</h2>
         </div>
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>stub description</th>
-                    <th>stub lenght</th>
-                    <th>stub diameter</th>
-                    <th>stub set</th>
-                    <th>projects</th>
+                    <th>id</th>
+                    <th>桩描述</th>
+                    <th>桩长</th>
+                    <th>桩径</th>
+                    <th>所属项目</th>
                 </tr>
             </thead>
             <tbody>
@@ -103,13 +104,13 @@
                     <th><a href="/projects/stubs/{{ stub.id }}">{{ stub.desc }}</a></th>
                     <td>{{ stub.length }}</td>
                     <td>{{ stub.diameter }}</td>
-                    <td>{{ stub.stubset.name }}</td>
-                    <td><a href="/projects/{{ stub.stubset.project.id }}/">{{ stub.stubset.project.name }}</a></td>
+                    <td><a href="/projects/{{ stub.stubset.project.id }}/">{{ stub.stubset.project.name }}-{{ stub.stubset.name }}</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
 
+<!--
         <div>
             <h2>桩机使用记录</h2>
         </div>
@@ -136,7 +137,7 @@
             </tbody>
         </table>
     </div>
-
+-->
     <!-- jquery JavaScript -->
     <script src="/static/js/jquery-3.2.1.min.js"></script>
 
@@ -145,34 +146,41 @@
 
     <script>
      $(document).ready(function() {
-         $("#checkout").click(function () {
-             //send jason to server
-             obj = {
-                 'mechine_id':1,
-                 'op_id':1,
-                 'from_stat_id':1,
-                 'to_stat_id':2
-             };
-             $.post("usage_record/", JSON.stringify(obj));
-         });
-         $("#checkin").click(function () {
-             obj = {
-                 'mechine_id': 1,
-                 'op_id': 1,
-                 'from_stat_id':2,
-                 'to_stat_id':1
-             };
-             $.post("usage_record/", JSON.stringify(obj));
-         });
-         $("#tamping").click(function () {
-             obj = {
-                 "mechine_record_id" : 17,
-                 "stub_id" : 1,
-             };
-             $.post("tamping_record/", JSON.stringify(obj));
+       var stub_s_num = 1;
 
-         });
+       $("#checkout").click(function () {
+           //send jason to server
+           obj = {
+               'mechine_id':1,
+               'op_id':1,
+               'from_stat_id':1,
+               'to_stat_id':2
+           };
+           $.post("usage_record/", JSON.stringify(obj));
+       });
 
+       $("#checkin").click(function () {
+           obj = {
+               'mechine_id': 1,
+               'op_id': 1,
+               'from_stat_id':2,
+               'to_stat_id':1
+           };
+           $.post("usage_record/", JSON.stringify(obj));
+       });
+
+       // tamping record test
+       $("#tamping").click(function () {
+           obj = {
+               "mechine_record_id" : 17,
+               "stub_id" : 1,
+               "serial_num" : stub_s_num++,
+               "drop_offset" : Math.floor((Math.random() * 100) + 1),
+               "depth_offset" : Math.floor((Math.random() * 100) + 1),
+               "consumption" : Math.floor((Math.random() * 100) + 1)
+           };
+           $.post("tamping_record/", JSON.stringify(obj));
+       });
     });
 </script>
 </body></html>

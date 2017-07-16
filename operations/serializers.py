@@ -37,6 +37,9 @@ class TampingRecordSerializer(serializers.Serializer):
     id = serializers.IntegerField(read_only=True)
     mechine_record_id = serializers.IntegerField()
     stub_id = serializers.IntegerField()
-
+    serial_num = serializers.IntegerField()
+    drop_offset = serializers.IntegerField()
+    depth_offset  = serializers.IntegerField()
+    consumption = serializers.IntegerField()
     def create(self, data):
         return TampingRecord.objects.create(**data)
