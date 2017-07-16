@@ -39,7 +39,20 @@ class MechineUsageRecord(models.Model):
 class TampingRecord(models.Model):
     mechine_record = models.ForeignKey(MechineUsageRecord)
     stub = models.ForeignKey(Stub)
+
+    # 时间戳
     timestamp = models.DateTimeField(auto_now_add=True)
+    # 夯击次数
+    serial_num = models.PositiveIntegerField(blank=True, null=True)
+    # 落距
+    drop_offset = models.DecimalField(blank=True, null=True, max_digits=20,
+                    decimal_places=2)
+    # 贯入度
+    depth_offset = models.DecimalField(blank=True, null=True, max_digits=20,
+                    decimal_places=2)
+    # 填料量
+    consumption = models.DecimalField(blank=True, null=True, max_digits=20,
+                    decimal_places=2)
 
     def __unicode__(self):
-        return self.op.name + ":" + self.mechine.info + ":"
+        return self.stub.desc + ":" + str(self.serial_num)

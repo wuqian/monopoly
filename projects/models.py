@@ -58,4 +58,4 @@ class Stub(models.Model):
     stubset = models.ForeignKey(StubSet)
 
     def __unicode__(self):
-        return self.name
+        return self.desc
