@@ -17,6 +17,6 @@ $python manage.py runserver
 ## update models
 ```shell
 python manage.py makemigrations ${app_name}
-python manage.py sqlmigrate polls ${migration_number}
+python manage.py sqlmigrate ${app_name} ${migration_number}
 python manage.py migrate
 ```
