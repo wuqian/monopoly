@@ -6,7 +6,10 @@ $sudo apt-get install curl
 $curl https://bootstrap.pypa.io/get-pip.py > get-pip.py
 $python get-pip.py
 $pip install virtualenv virtualenvwrapper
+
+#/usr/bin/virtualenvwrapper.sh
 $source /usr/bin/virtualenvwrapper.sh
+
 $mkvirtualenv django
 $pip install django
 $pip install djangorestframework
